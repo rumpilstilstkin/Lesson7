@@ -40,6 +40,16 @@ public class ExampleInstrumentedTest {
     @Test
     public void ensureProgressViewIsShowing() {
         MainActivity activity = rule.getActivity();
+        View loadingView = activity.findViewById(R.id.loadingView);
+        assertThat(loadingView, notNullValue());
+        assertThat(loadingView, instanceOf(ProgressBar.class));
+        activity.showLoading();
+        assertEquals(loadingView.getVisibility(), View.VISIBLE);
+    }
+
+    @Test
+    public void ensureProgressViewIsHide() {
+        MainActivity activity = rule.getActivity();
         View viewById = activity.findViewById(R.id.loadingView);
         assertThat(viewById, notNullValue());
         assertThat(viewById, instanceOf(ProgressBar.class));
