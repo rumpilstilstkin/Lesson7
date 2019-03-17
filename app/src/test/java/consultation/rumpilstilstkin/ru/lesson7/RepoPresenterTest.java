@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,32 +50,6 @@ public class RepoPresenterTest {
         presenter.setViewState(repsViewState);
         verify(view).showLoading();
         verify(view).showRepoList(list);
-        verify(view).hideLoading();
-        verifyNoMoreInteractions(view);
-    }
-
-    @Test
-    public void testShowError(){
-        Exception error = new IOException();
-        when(client.getReps()).thenReturn(Single.fromCallable(() -> { throw error; }));
-        presenter.attachView(view);
-        presenter.setViewState(repsViewState);
-        verify(view).showLoading();
-        verify(view).showError(error);
-        verify(view).hideLoading();
-        verifyNoMoreInteractions(view);
-    }
-
-    @Test
-    public void testShowEmpty(){
-        List<RepsModel> list = new ArrayList<>();
-
-        when(client.getReps()).thenReturn(Single.fromCallable(() -> list));
-        presenter.attachView(view);
-        presenter.setViewState(repsViewState);
-
-        verify(view).showLoading();
-        verify(view).showEmptyState();
         verify(view).hideLoading();
         verifyNoMoreInteractions(view);
     }
