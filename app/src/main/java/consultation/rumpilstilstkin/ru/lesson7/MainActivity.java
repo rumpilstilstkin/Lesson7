@@ -45,26 +45,26 @@ public class MainActivity extends MvpAppCompatActivity
 
     @Override
     public void showLoading() {
-        empty.setVisibility(View.GONE);
-        content.setVisibility(View.GONE);
+        empty.setVisibility(View.INVISIBLE);
+        content.setVisibility(View.INVISIBLE);
         progress.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        progress.setVisibility(View.GONE);
+        progress.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showRepoList(List<RepsModel> list) {
-        empty.setVisibility(View.GONE);
+        empty.setVisibility(View.INVISIBLE);
         content.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showEmptyState() {
         empty.setVisibility(View.VISIBLE);
-        content.setVisibility(View.GONE);
+        content.setVisibility(View.INVISIBLE);
     }
 
     @Override
